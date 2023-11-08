@@ -87,6 +87,23 @@ async function copyContent(){
     setTimeout(()=>{copyMsg.classList.remove("active")},2000);
 }
 
+function handleCheckBoxChange(){
+    checkCount=0;
+    allCheckBox.forEach((checkbox)=>{
+        if(checkbox.checked)
+            checkCount++;
+    });
+    //special condition
+    if(passwordLength<checkCount){
+        passwordLength=checkCount;
+        handleSlider();
+    }
+}
+
+allCheckBox.forEach((checkbox)=>{
+    checkbox.addEventListener('change',handleCheckBoxChange);
+})
+
 inputSlider.addEventListener('input',(e)=>{
     passwordLength=e.target.value;
     handleSlider();
@@ -97,4 +114,12 @@ copyBtn.addEventListener('click',()=>{
         copyContent();
 })
 
-ge
+generateBtn.addEventListener('click',()=>{
+    //none of the check box are selected
+    if(checkCount<=0) return;
+
+    if(passwordLength<checkCount){
+        passwordLength=checkCount;
+        handleSlider
+    }
+})
